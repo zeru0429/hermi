@@ -35,7 +35,7 @@
               <a href="post.php" class="nav-link">Post</a>
             </li>
             <li class="nav-item px-2">
-              <a href="categories.php" class="nav-link">Categories</a>
+              <a href="categories.php" class="nav-link">Vaccine</a>
             </li>
             <li class="nav-item px-2">
               <a href="users.php" class="nav-link">Users</a>

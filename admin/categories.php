@@ -5,7 +5,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-6">
-            <h1><i class="fa fa-folder"> Categories</i></h1>
+            <h1><i class="fa fa-folder"> Vaccines</i></h1>
           </div>
         </div>
       </div>
@@ -38,32 +38,31 @@
               <table class="table table-striped">
                 <thead class="thead-inverse">
                   <tr>
-                    <th>Categories</th>
-                    <th>date Posted</th>
+                  <th>#</th>
+                    <th>vaccine_name</th>
+                    <th>description</th>
                   </tr>
                 </thead>
                 <tbody>
+                <?php
+                      $query = "SELECT * FROM vaccination_description";
+                      $result = mysqli_query($conn,$query) or die(mysqli_error());
+                      $rows = mysqli_num_rows($result);  
+                      if ($rows>0){
+                              while($rows=mysqli_fetch_assoc($result)){
+                                $id=$rows['id'];
+                                $vaccine_name = $rows['vaccine_name'];
+                                $description= $rows['description'];
+                            
+                          ?>
                   <tr>
-                    <td>Vaccines given at birth</td>
-                    <td>June 21, 2023</td>
+                    <td><?php echo $id ?></td>
+                    <td><?php echo $vaccine_name ?></td>
+                    <td><?php echo $description ?></td>
                   </tr>
-                  <tr>
-                    <td>Vaccines given for two months babies</td>
-                    <td>June 24, 2023</td>
-                  </tr>
-
-                  <tr>
-                    <td>Vaccines given for four months babies</td>
-                    <td>June 24, 2023</td>
-                  </tr>
-                  <tr>
-                    <td>Vaccines given for six months babies</td>
-                    <td>June 24, 2023</td>
-                  </tr>
-                  <tr>
-                    <td>Vaccines given for twelve months babies</td>
-                    <td>June 24, 2023</td>
-                  </tr>
+                  
+                  <?php }} ?>
+                  
                 </tbody>
               </table>
               <nav class="ml-4">

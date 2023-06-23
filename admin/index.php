@@ -23,6 +23,16 @@
         </div>
 
         <div class="catagor text-center">
+            <?php  $query = "SELECT * from vaccination_description";
+                $result=mysqli_query($conn, $query);
+                $rows = mysqli_num_rows($result);
+            ?>
+            <h2><?php echo $rows?>
+            </h2><br>
+            total vaccination
+        </div> 
+
+        <div class="catagor text-center">
             <?php  $query = "SELECT * from post";
             $result=mysqli_query($conn, $query);
             $rows = mysqli_num_rows($result); 
@@ -30,7 +40,7 @@
             <h2>
             <?php echo $rows?>
             </h2><br>
-            Post
+           total Post
         </div>
  
 
@@ -40,7 +50,7 @@
             $rows = mysqli_num_rows($result);
             ?>
             <h2><?php echo $rows?></h2><br>
-                mother
+            total mother
         </div>
 
 
@@ -51,7 +61,7 @@
             ?>
             <h2><?php echo $rows?>
             </h2><br>
-            child
+            total child
         </div>  
 
 
@@ -62,7 +72,7 @@
             ?>
             <h2><?php echo $rows?>
             </h2><br>
-            mother_vaccin
+            total mother vaccin
         </div> 
 
         <div class="catagor text-center">
@@ -72,7 +82,7 @@
             ?>
             <h2><?php echo $rows?>
             </h2><br>
-            child_vaccine
+            total child vaccine
         </div> 
 
         <div class="catagor text-center">
@@ -82,8 +92,9 @@
             ?>
             <h2><?php echo $rows?>
             </h2><br>
-            post_img
+            total post_img
         </div> 
+       
     
 </div> 
 
