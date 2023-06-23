@@ -35,12 +35,11 @@
       <div class="container">
         <div class="row">
         <div class="col-md-3">
-            <a
-              href="#"
+            <a href="#"
               class="btn btn-warning btn-block"
               data-toggle="modal"
-              data-target="#addUserModal"
-              ><i class="fa fa-plus"> Add Users</i>
+              data-target="#addUserModal">
+              <i class="fa fa-plus"> Add Users</i>
             </a>
           </div>
          <?php

@@ -29,12 +29,26 @@
 
   <section id="posts">
     <div class="container">
+    <div class="container">
+        <div class="row">
+        <div class="col-md-3">
+            <a href="add_new_post.php"
+              class="btn btn-warning btn-block">
+              <i class="fa fa-plus"> 
+                Add new Post
+              </i>
+            </a>
+          </div>
+</div>
+</div>
+<br><br>
       <div class="row">
         <div class="col">
           <div class="card">
             <div class="card-header">
               <h4>Latest Posts</h4>
             </div>
+
             <table class="table table-striped">
               <thead class="thead-inverse">
                 <tr>
@@ -50,27 +64,28 @@
               <tbody>
 
                         <?php
-                          $query = "SELECT * FROM post";
-                          $result = mysqli_query($conn,$query) or die(mysqli_error());
-                          $rows = mysqli_num_rows($result);  
-                          print('<pre>');
-                          print_r($rows);
-                          if ($rows>0){
-                                  while($rows=mysqli_fetch_assoc($result)){
-                                    $id=$rows['post_id'];
-                                    $tittle = $rows['tittle'];
-                                    $catagory = $rows['catagory'];
-                                    $description = $rows['description'];
-                                    $date_of_post = $rows['date_of_post'];
+                              $query = "SELECT * FROM post";
+                        
+                              $result = mysqli_query($conn,$query) or die(mysqli_error());
+                              $rows = mysqli_num_rows($result);  
+                              
+                              if ($rows>0){
+                                      while($rows=mysqli_fetch_assoc($result)){
+                                        $id=$rows['post_id'];
+                                        $title = $rows['tittle'];
+                                        $catagory = $rows['catagory'];
+                                        $description = $rows['description'];
+                                        $date_of_post = $rows['date_of_post'];
+                             
                           ?>
                 <tr>
-                  <td><?php $id ?></td>
-                  <td scopr="row"><?php $titile ?></td>
-                  <td><?php $catagory ?></td>
-                  <td><?php $description ?></td>
-                  <td><?php $date_of_post ?></td>
+                  <td><?php echo $id ?></td>
+                  <td scopr="row"><?php echo $title ?></td>
+                  <td><?php echo $catagory ?></td>
+                  <td><?php echo $description ?></td>
+                  <td><?php echo $date_of_post ?></td>
                   <td>
-                    <a href="details.html" class="btn btn-secondary"
+                    <a href="details.php?id=<?php echo $id?>" class="btn btn-secondary"
                       ><i class="fa fa-angle-double-right"> Details</i></a
                     >
                   </td>
@@ -82,28 +97,6 @@
             </table>
 
 
-
-            <nav class="ml-4">
-                <ul class="pagination">
-                    <li class="page-item disabled">
-                        <a href="'#'" class="page-link">Previous</a>
-                    </li>
-                     <li class="page-item active">
-                        <a href="'#'" class="page-link">1</a>
-                    </li>
-                     <li class="page-item ">
-                        <a href="'#'" class="page-link">2</a>
-                    </li>
-                     <li class="page-item">
-                        <a href="'#'" class="page-link">3</a>
-                    </li>
-                     <li class="page-item">
-                        <a href="'#'" class="page-link">Next</a>
-                    </li>
-                </ul>
-            </nav>
-
-
           </div>
         </div>
       </div>
@@ -112,21 +105,5 @@
 
   </select> 
  </div>
-              <div class="form-group">
-                <label for="file">Image Upload</label>
-                <input type="file" name="" id="" class="form-control">
-                <small class="form-text text-muted">Ma file 3mb</small>
-              </div>
-              <div class="form-group">
-                <label for="body">Body</label>
-                <textarea name="editor1" id=""  class="form-control"></textarea>
-              </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button class="btn btn-seconday" data-dismiss="modal">Close</button>
-          <button class="btn btn-primary" data-dismiss="modal">Save Changes</button>
-        </div>
-      </div>
-    </div>
+            
 <?php  include("./parts/footer.php") ?>
