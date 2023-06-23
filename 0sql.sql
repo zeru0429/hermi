@@ -85,3 +85,36 @@ CREATE TABLE cbtp.post_img (
   FOREIGN KEY (post_id) REFERENCES cbtp.post (post_id)
 );
 
+
+
+
+USE cbtp;
+SELECT post.tittle, 
+       post.catagory,
+       post.description,
+       post.date_of_post,
+       post_img.img_url
+FROM post
+INNER JOIN post_img
+  ON post.post_id = post_img.post_id order by post.date_of_post;
+
+
+
+<!-- News Card -->
+                    <div class="card">
+                      <img src="./images/posts/<?php echo $img_url; ?>" class="card-img-top" alt="<?php echo $img_url; ?>">
+                      <div class="card-body">
+                        <h5 class="card-title"><?php echo $title; ?></h5>
+                        <p class="card-text"><?php echo $description; ?>(cropped)</p>
+                        <a href="#" class="btn btn-primary">Read More</a>
+                      </div>
+                    </div>
+                    <!-- End News Card -->
+
+
+
+
+
+
+
+
