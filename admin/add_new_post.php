@@ -1,6 +1,10 @@
-<?php include("./parts/header.php") ?>
+<?php include("./parts/header.php");
 
-
+if(isset($_SESSION['add'])){
+          echo "<h1 class='error'>". $_SESSION['add']."</h1>";
+          unset($_SESSION['add']);}
+   
+         ?>
 <div id="addPostModal" class="">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -97,7 +101,7 @@ $query ="INSERT INTO `post` (tittle,catagory,description,date_of_post)
 $result = mysqli_query($conn,$query)or die(mysqli_error());
 if($result == True){
     $_SESSION["add"]=$titile." sucessfully added";
-    header("Location:".HOMEURL."admin/posts.php");
+    #header("Location:".HOMEURL."admin/posts.php");
     
 }else{
     $_SESSION["add"]=$titile." failed to added";
