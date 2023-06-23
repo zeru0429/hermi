@@ -31,6 +31,11 @@
                 <i class="fa fa-user-times"> Login</i>
               </a>
             </li>
+            <li class="nav-item">
+              <a href="../index.php" class="nav-link">
+                <i class="fa fa-user-times"> Home</i>
+              </a>
+            </li>
           </ul>
         </div>
       </div>
@@ -47,42 +52,42 @@
       </div>
     </header>
 
-<div class="menu">
-    <div class="wrapper">
-        <h1 class='sucess'>Infant immunization</h1>
+
+    <section id="posts">
+      <div class="container">
+        <div class="row">
+          <div class="col-md">
+            <div class="card">
+
+              <div class="card-header">
+                  <h1 class='sucess'>
+                    Infant immunization
+                  </h1>
+              </div>
+              <div class="card-header">
+              <form action="#" method="post">
+                  <table class="halfwidth">
+                        <tr>
+                            <td>username</td>
+                            <td> <input type="text" name="username" placeholder="username" > </td>
+                        </tr>
+                        <tr>
+                            <td>password</td>
+                            <td><input type="password" name="password" placeholder="password"  ></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><input type="submit" name="login" value="login" class="btn-sec"></td>
+                        </tr>
+                  </table>
+              </form>
+            
+            </div>
+          </div>
+          
+        </div>
+      </div>
     </div>
-</div>
-
-<div class="main">
-    <div class="wrapper">
-
-    <form action="#" method="post">
-        <table class="halfwidth">
-            <tr>
-                <td>username</td>
-                <td> <input type="text" name="username" placeholder="username" > </td>
-            </tr>
-            <tr>
-                <td>password</td>
-                <td><input type="password" name="password" placeholder="password"  ></td>
-            </tr>
-            <tr>
-                <td colspan="2"><input type="submit" name="login" value="login" class="btn-sec"></td>
-            </tr>
-        </table>
-        </form>
-
-    </div>
-</div>
-
-
-<div class="clear-fixt">
-    <div>
-    </div>
-    
-    </div> 
-
-
+</section>
 
 
 
