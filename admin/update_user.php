@@ -13,9 +13,17 @@ $id = $_GET['id'];
         <span>&times;</span>
         </button>
     </div>
+    <?php
+        if(isset($_SESSION['add'])){
+          echo "<h1 class='error'>". $_SESSION['add']."</h1>";
+          unset($_SESSION['add']);}
+   
+         ?>
 
         <?php
                 $query = "SELECT * FROM cbtp.users where user_id='$id'";
+                // echo $query;
+                // die();
                 $result = mysqli_query($conn,$query) or die(mysqli_error());
                 $rows = mysqli_num_rows($result);  
                 if ($rows>0){
@@ -77,7 +85,7 @@ $id = $_GET['id'];
 
     <div class="modal-footer">
         <label for=""><a href="users.php">Close</a></label>
-        <input type="submit"  class="btn btn-warning" name='update' value="submit">
+        <input type="submit"  class="btn btn-warning" name='updateuser' value="Update">
     </div>
 
     </div>
@@ -87,8 +95,8 @@ $id = $_GET['id'];
 </div>
 <!--  Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<?php
-if(isset($_POST['update'])){
+<?php 
+if(isset($_POST['updateuser'])){
     $username = $_POST['username'];
     $role = $_POST['role'];
     $f_name = $_POST['f_name'];
@@ -96,7 +104,6 @@ if(isset($_POST['update'])){
     $l_name=$_POST['l_name'];
     $phone_number = $_POST["phone_number"];
     $email = $_POST['email'];
-
     if(!isset($_FILES['image']['name'])){
         $image_name = "";
     }
@@ -117,22 +124,24 @@ if(isset($_POST['update'])){
              f_name='$f_name', m_name='$m_name', 
              l_name='$l_name', username='$username', 
              phone_number='$phone_number', 
-             email='$email', role='$role' ";
+             email='$email', role='$role' where user_id='$id' ";
 
     $result = mysqli_query($conn,$query)or die(mysqli_error());
+
     if($result == True){
-        $_SESSION["add"]=$username." sucessfully added";
-        # header("Location:".HOMEURL."admin/users.php");
+        $_SESSION["add"]=$username." updated successfully";
+        #header("Location:".HOMEURL."admin/users.php");
          
      }else{
-         $_SESSION["add"]=$username." failed to added";
-        # header("Location:".HOMEURL."admin/update_user.php");
-     }
-     
-     }else{
-         echo "btn not  clicked";
-     }
-     
-     
+        
+           $_SESSION["add"]=" failed to Update";
+         if(isset($_SESSION['add'])){
+        echo "<h1 class='error'>". $_SESSION['add']."</h1>";
+        unset($_SESSION['add']);
 
-  include("./parts/footer.php") ?>
+     }
+     
+}
+
+}
+include("./parts/footer.php") ?>
