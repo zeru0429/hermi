@@ -41,68 +41,48 @@
                   <th>#</th>
                   <th>Title</th>
                   <th>Categories</th>
-                  <th>date Posted</th>
+                  <th>Description</th>
+                  <th>Date Posted</th>
                   <th></th>
                 </tr>
               </thead>
+
               <tbody>
+
+                        <?php
+                          $query = "SELECT * FROM post";
+                          $result = mysqli_query($conn,$query) or die(mysqli_error());
+                          $rows = mysqli_num_rows($result);  
+                          print('<pre>');
+                          print_r($rows);
+                          if ($rows>0){
+                                  while($rows=mysqli_fetch_assoc($result)){
+                                    $id=$rows['post_id'];
+                                    $tittle = $rows['tittle'];
+                                    $catagory = $rows['catagory'];
+                                    $description = $rows['description'];
+                                    $date_of_post = $rows['date_of_post'];
+                          ?>
                 <tr>
-                  <td scopr="row">1</td>
-                  <td>Post One</td>
-                  <td>Vaccines given at birth</td>
-                  <td>June 21, 2023</td>
+                  <td><?php $id ?></td>
+                  <td scopr="row"><?php $titile ?></td>
+                  <td><?php $catagory ?></td>
+                  <td><?php $description ?></td>
+                  <td><?php $date_of_post ?></td>
                   <td>
                     <a href="details.html" class="btn btn-secondary"
                       ><i class="fa fa-angle-double-right"> Details</i></a
                     >
                   </td>
                 </tr>
-                <tr>
-                  <td scopr="row">2</td>
-                  <td>Post two</td>
-                  <td>Vaccines given for two months babies</td>
-                  <td>June 21, 2023</td>
-                  <td>
-                    <a href="details.html" class="btn btn-secondary"
-                      ><i class="fa fa-angle-double-right"> Details</i></a
-                    >
-                  </td>
-                </tr>
-                <tr>
-                  <td scopr="row">3</td>
-                  <td>Post there</td>
-                  <td>Vaccines given for four months babies</td>
-                  <td>June 21, 2023</td>
-                  <td>
-                    <a href="details.html" class="btn btn-secondary"
-                      ><i class="fa fa-angle-double-right"> Details</i></a
-                    >
-                  </td>
-                </tr>
-                <tr>
-                  <td scopr="row">4</td>
-                  <td>Post Four</td>
-                  <td>Vaccines given for six months babies</td>
-                  <td>June 21, 2023</td>
-                  <td>
-                    <a href="details.html" class="btn btn-secondary"
-                      ><i class="fa fa-angle-double-right"> Details</i></a
-                    >
-                  </td>
-                </tr>
-                <tr>
-                  <td scopr="row">5</td>
-                  <td>Post five</td>
-                  <td>Vaccines given for twelve months babies</td>
-                  <td>June 21, 2023</td>
-                  <td>
-                    <a href="details.html" class="btn btn-secondary"
-                      ><i class="fa fa-angle-double-right"> Details</i></a
-                    >
-                  </td>
-                </tr>
+                  <?php }} ?>
               </tbody>
+
+
             </table>
+
+
+
             <nav class="ml-4">
                 <ul class="pagination">
                     <li class="page-item disabled">
@@ -122,6 +102,8 @@
                     </li>
                 </ul>
             </nav>
+
+
           </div>
         </div>
       </div>

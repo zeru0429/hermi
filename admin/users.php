@@ -70,7 +70,7 @@
                 </tr>
               </thead>
               <tbody>
-              <?php
+<?php
         $query = "SELECT * FROM users";
         $result = mysqli_query($conn,$query) or die(mysqli_error());
         $rows = mysqli_num_rows($result);
@@ -97,26 +97,16 @@
                     <td>
 
         <div class="row">
-
-        <div class="col-md-4">
+         <div class="col-md-6">
             <a
-              href="#"
+              href="update_user.php?id=<?php echo $id ?>"
               class="btn btn-primary btn-block"
-              data-toggle="modal"
-              data-target="#addUserModal"
-              ><i class="fa fa-plus">details </i></a>
-          </div>
-         <div class="col-md-4">
-            <a
-              href="#"
-              class="btn btn-warning btn-block"
-              data-toggle="modal"
-              data-target="#addUserModal"
+        
               ><i class="fa fa-plus">Update </i>
             </a>
           </div>
 
-          <div class="col-md-4">
+          <div class="col-md-6">
           
 
           <a href="delete_user.php?id=<?php echo $id;?>"  class='btn btn-danger btn-block'>Delete </a> 
@@ -218,4 +208,10 @@
     </div>
     <!--  Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<?php  include("./parts/footer.php") ?>
+
+
+
+
+
+
+    <?php  include("./parts/footer.php") ?>

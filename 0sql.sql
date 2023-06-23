@@ -66,3 +66,5 @@ CREATE TABLE if not exists `cbtp`.`child_vaccine` (
     REFERENCES `cbtp`.`child_table` (`c_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
+create table if not exists cbtp.post (post_id int auto_increment primary key, tittle varchar(100) not null, catagory varchar(50) not null, description Text not null, date_of_post datetime not null);
+create table if not exists cbtp.post_img (post_img_id int auto_increment primary key,post_id int ,image_url varchar(255) , foreign key(post_id) references post(post_id));
