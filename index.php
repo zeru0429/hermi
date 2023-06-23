@@ -25,40 +25,10 @@
           data-target="#navbarNav"
         ></button>
         <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item px-2">
-              <a href="index.html" class="nav-link active">Dashboard</a>
-            </li>
-            <li class="nav-item px-2">
-              <a href="post.html" class="nav-link">Post</a>
-            </li>
-            <li class="nav-item px-2">
-              <a href="categories.html" class="nav-link">Categories</a>
-            </li>
-            <li class="nav-item px-2">
-              <a href="users.html" class="nav-link">Users</a>
-            </li>
-          </ul>
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item dropdown mr-3">
-              <a
-                href="#"
-                class="nav-link dropdown-toggle"
-                data-toggle="dropdown"
-                ><i class="fa fa-user"> Welcome Admin</i></a
-              >
-              <div class="dropdown-menu">
-                <a href="profile.html" class="dropdown-item">
-                  <i class="fa fa-user-circle"> Profile</i>
-                </a>
-                <a href="settings.html" class="dropdown-item">
-                  <i class="fa fa-gear"> Settings</i>
-                </a>
-              </div>
-            </li>
             <li class="nav-item">
-              <a href="login.html" class="nav-link">
-                <i class="fa fa-user-times"> Logout</i>
+              <a href="./admin/login.php" class="nav-link">
+                <i class="fa fa-user-times"> Login</i>
               </a>
             </li>
           </ul>
