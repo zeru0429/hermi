@@ -83,7 +83,7 @@ $id = $_GET['id'];
                   </div>
                   <div class="form-group">
                     <label for="body">Body</label>
-                    <textarea name="editor1" id="" class="form-control"> value="<?php echo $description; ?>" </textarea>
+                    <textarea name="editor1" id="" class="form-control"><?php echo $description; ?></textarea>
                   </div>
                   <?php
                       }

@@ -40,6 +40,7 @@
               data-toggle="modal"
               data-target="#addUserModal">
               <i class="fa fa-plus"> Add Users</i>
+              
             </a>
           </div>
          <?php

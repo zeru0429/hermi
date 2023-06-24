@@ -11,7 +11,7 @@
     <meta
       name="viewport"   content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <script src="script.min.js" deffer></script>
-    <link rel="stylesheet" href="../style.min.css" />
+    <link rel="stylesheet" href="../css/style.min.css" />
     <link rel="stylesheet" href="resources/css/style.css" />
     <link rel="stylesheet" href="vendors/font-aweome/css/all.css" />
     <title>Admin UI</title>
@@ -44,11 +44,9 @@
           <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown mr-3">
               <a
-                href="#"
-                class="nav-link dropdown-toggle"
-                data-toggle="dropdown"
-                ><i class="fa fa-user"> Welcome <?php echo $usr; ?></i></a
-              >
+                href="profile.php?username=<?php echo $usr ?>"
+                class="nav-link dropdown-toggle">
+                <i class="fa fa-user"><?php echo $usr;?> Profile</i></a>
               <div class="dropdown-menu">
                 <a href="profile.php?usr='$id='$usr'" class="dropdown-item">
                   <i class="fa fa-user-circle"> Profile</i>

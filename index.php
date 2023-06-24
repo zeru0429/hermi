@@ -69,7 +69,7 @@
                       post_img.img_url
                       FROM post
                       INNER JOIN post_img
-                      ON post.post_id = post_img.post_id order by post.date_of_post;";
+                      ON post.post_id = post_img.post_id order by post.date_of_post DESC;";
 
                     $result = mysqli_query($conn,$query) or die(mysqli_error());
                     $rows = mysqli_num_rows($result);    

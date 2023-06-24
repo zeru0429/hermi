@@ -55,7 +55,6 @@
                   <th>#</th>
                   <th>Title</th>
                   <th>Categories</th>
-                  <th>Description</th>
                   <th>Date Posted</th>
                   <th></th>
                 </tr>
@@ -64,7 +63,7 @@
               <tbody>
 
                         <?php
-                              $query = "SELECT * FROM post";
+                              $query = "SELECT * FROM post order by post.date_of_post DESC";
                         
                               $result = mysqli_query($conn,$query) or die(mysqli_error());
                               $rows = mysqli_num_rows($result);  
@@ -82,7 +81,7 @@
                   <td><?php echo $id ?></td>
                   <td scopr="row"><?php echo $title ?></td>
                   <td><?php echo $catagory ?></td>
-                  <td><?php echo $description ?></td>
+                  
                   <td><?php echo $date_of_post ?></td>
                   <td>
                     <a href="details.php?id=<?php echo $id?>" class="btn btn-secondary"

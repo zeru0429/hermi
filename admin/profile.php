@@ -1,101 +1,95 @@
 <?php include("./parts/header.php") ?>
     <!----------  Main section ----------->
-    <div class="main">
-    <div class="wrapper">
-    <h1>Admin Manage</h1 >
-
-    <br>
+    <div class="main contaner center">
+        <div class="wrapper">
+            <h1>Profile</h1 ><br>
+        </div>
+    </div>
     
-    <?php 
-    if(isset($_SESSION['add'])){
-        echo "<h2 class= 'success'>". $_SESSION['add']."</h2>";
-        unset($_SESSION['add']);
-        
-    }
-    $usr = $_GET['usr'];
-    ?>
-    <br>
-    <br>
-    <a href="new-admin.php" class="btn-primary">Add Admin</a>
-    <br> <br>
+        <?php 
+            if(isset($_SESSION['add'])){
+                echo "<h2 class= 'success'>". $_SESSION['add']."</h2>";
+                unset($_SESSION['add']);
+                
+            }
+            $username = $_GET['username'];
+        ?>
+    
+<br><br>
+<div>
+    <div>
+        <a href="index.php" class="btn-primary">Back to dashbord</a>
+        <br> <br>
+    </div>
     <table class="fullwidth">
-        <tr>
-            <th>Id</th>
-            <th>Full name</th>
-            <th>Username</th>
-            <th>Actions</th>
-        </tr>
-        
-        
         <?php
-        $query = "SELECT * FROM users where username='$usr'";
-        $result = mysqli_query($conn,$query) or die(mysqli_error());;
+            $query = "SELECT * FROM cbtp.users where username='$username'";
+            $result = mysqli_query($conn,$query) or die(mysqli_error());;
 
-        if($result==TRUE){ // check if query is successfully excuted
-            $rows = mysqli_num_rows($result);
+            if($result==TRUE){ // check if query is successfully excuted
+                $rows = mysqli_num_rows($result);
+                if ($rows>0){// check the numbers of data in db
+                    while($rows=mysqli_fetch_assoc($result)){
+                        $id=$rows['user_id'];
+                        $username = $rows['username'];
+                        $rol = $rows['role'];
+                        $f_name = $rows['f_name'];
+                        $m_name = $rows["m_name"];
+                        $l_name=$rows['l_name'];
+                        $phone_number = $rows["phone_number"];
+                        $email = $rows['email'];
+                        $image_url = $rows['image_url'];
+                    ?>
+                        <tr>
+                            <td style="border: 2px" ><img style="border-radius: 50%" width='200vh'  src="./../images/users/<?php echo $image_url ?>" alt="" srcset=""></td>
+                        </tr>
 
-            if ($rows>0){// check the numbers of data in db
-                while($rows=mysqli_fetch_assoc($result)){
-                    $id=$rows['user_id'];
-                     $username = $rows['username'];
-                     $rol = $row['role'];
-                     $f_name = $rows['f_name'];
-                     $m_name = $rows["m_name"];
-                     $l_name=$rows['l_name'];
-                     $phone_number = $rows["phone_number"];
-                     $email = $row['email'];
-                 ?>
-                    <tr>
-                    <td><?php echo $id; ?></td>
-                    <td><?php echo $username?></td>
-                    <td><?php echo $rol?></td>
-                    <td><?php echo $f_name ?></td>
-                    <td><?php echo $m_name ?></td>
-                    <td><?php echo $l_name?></td>
-                    <td><?php echo $phone_number?></td>
-                    <td><?php echo $email?></td>
+                        <tr>
+                            <td><?php echo $username?></td>
+                        </tr>
+                        <tr>
+                            <td><?php echo $rol?></td>
+                        </tr>
+                        <tr>
+                            <td><?php echo $f_name ?></td>
+                        </tr>
+                        <tr>
+                            <td><?php echo $m_name ?></td>
+                        </tr>
+
+                        <tr>
+                            <td><?php echo $l_name?></td>
+                        </tr>
                     
-                    <td>
-                       <a href="update_admin.php?id=<?php echo $id;?>" class='btn-sec'>Update Admin</a>
-                       <a href="change_password.php?id=<?php echo $id;?>" class='btn-sec'>Change Password</a>  
-                       <a href="delete_admin.php?id=<?php echo $id;?>" class='btn-dang'>Delete Admin</a> 
-                    </td>
-                </tr>
-            <?php 
-            
+                        <tr>
+                            <td><?php echo $phone_number?></td>
+                        </tr>
+                        <tr>
+                            <td><?php echo $email?></td>
+                        </tr>
+                        
+                        <tr>
+                            <td>
+                                <a href="update_admin.php?id=<?php echo $id;?>" class='btn-sec'>Update Admin</a>
+                                <a href="change_password.php?id=<?php echo $id;?>" class='btn-sec'>Change Password</a>  
+                            </td>
+                        </tr>
+        <?php 
+                
+                    }
+
+                }
+                else{
+                    //no data here// empty database
                 }
 
             }
-            else{
-                //no data here// empty database
-            }
-
-        }
 
 
         ?>
-          
-       
-
 
     </table>
-
-
-
-
-
-
-
-
-<div class="clear-fixt"></div>
-    </div>
-    
-    </div> 
-
-
-    <!----X-----  Main section -----X----->
-
-    
+</div>
 
 
 <?php  include("./parts/footer.php") ?>
