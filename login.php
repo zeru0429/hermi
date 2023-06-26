@@ -106,16 +106,16 @@ if(isset($_POST['login'])){
       while($rows=mysqli_fetch_assoc($result)){
         $role=$rows['role'];
           }
-      if($roles == 'admin'){
-        $_SESSION["login"]=$id."login successfully";
-        $_SESSION["username"]=$username;
-        header("Location:".HOMEURL."admin/index.php");
-      }
-      elseif($role == 'registrar'){
-        $_SESSION["login"]=$id."login successfully";
-        $_SESSION["username"]=$username;
-        header("Location:".HOMEURL."registrar/index.php");
-      }
+          if($role == 'admin'){
+                $_SESSION["login"]=$id."login successfully";
+                $_SESSION["username"]=$username;
+                header("Location:".HOMEURL."admin/index.php");
+              }
+              elseif($role == 'registrar'){
+                $_SESSION["login"]=$id."login successfully";
+                $_SESSION["username"]=$username;
+                header("Location:".HOMEURL."registrar/index.php");
+              }
         }
     else{
             $_SESSION["login"]=" fail to login";
