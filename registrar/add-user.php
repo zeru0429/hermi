@@ -40,6 +40,7 @@
 </style>
 
 <?php
+
 if (isset($_POST['submit'])) {
     $f_name = $_POST['f_name'];
     $m_name = $_POST['m_name'];
@@ -57,7 +58,14 @@ if (isset($_POST['submit'])) {
     } else {
         $image_name = $_FILES['image']['name'];
         $image_source = $_FILES['image']['tmp_name'];
-        $image_destination = "../images/mother/" . $image_name;
+        
+        // Get the file extension
+        $extension = pathinfo($image_name, PATHINFO_EXTENSION);
+        
+        // Generate the new image name
+        $new_image_name = $id . $f_name . $m_name . $lname . '.' . $extension;
+        
+        $image_destination = "../images/mother/" . $new_image_name;
 
         $upload = move_uploaded_file($image_source, $image_destination);
 
@@ -71,7 +79,7 @@ if (isset($_POST['submit'])) {
     $query = "INSERT INTO `cbtp`.`mother_table` 
             (f_name, m_name, l_name, bithdate, photo_url, blood_type, m_phone, zone, wereda, kebele)
             VALUES
-            ('$f_name', '$m_name', '$l_name', '$birthdate', '$image_name', '$blood_type', '$phone_number', '$zone', '$wereda', '$kebele')";
+            ('$f_name', '$m_name', '$l_name', '$birthdate', '$new_image_name', '$blood_type', '$phone_number', '$zone', '$wereda', '$kebele')";
 
     $result = mysqli_query($conn, $query) or die(mysqli_error());
 
@@ -92,9 +100,12 @@ if (isset($_POST['submit'])) {
         $_SESSION["add"] = $f_name . " failed to add";
         header("Location:" . HOMEURL . "/registrar/add-user.php");
     }
-} else {
+  } 
+  else
+   {
     echo "Button not clicked";
-}
+  }
 ?>
+
 
 <?php include("./parts/footer.php") ?>

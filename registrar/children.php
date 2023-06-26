@@ -9,6 +9,7 @@ while($rows=mysqli_fetch_assoc($result)){
 } 
 
 ?>
+
  
 <!--HEADER -->
 <header id="main-header" class="py-2 bg-warning text-white">
