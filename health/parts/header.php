@@ -44,14 +44,6 @@
                 href="profile.php?username=<?php echo $usr ?>"
                 class="nav-link dropdown-toggle">
                 <i class="fa fa-user"><?php echo $usr;?> Profile</i></a>
-              <div class="dropdown-menu">
-                <a href="profile.php?usr='$id='$usr'" class="dropdown-item">
-                  <i class="fa fa-user-circle"> Profile</i>
-                </a>
-                <a href="settings.php" class="dropdown-item">
-                  <i class="fa fa-gear"> Settings</i>
-                </a>
-              </div>
             </li>
             <li class="nav-item">
               <a href="../logout.php" class="nav-link">

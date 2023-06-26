@@ -26,7 +26,7 @@ CREATE TABLE if not exists `cbtp`.`mother_table` (
   PRIMARY KEY (`m_id`));
 
 CREATE TABLE if not exists `cbtp`.`child_table` (
-  `c_id` INT NOT NULL,
+  `c_id` INT NOT NULL auto_increment,
   `m_id` INT NOT NULL,
   `f_name` VARCHAR(45) NOT NULL,
   `m_name` VARCHAR(45) NOT NULL,
@@ -35,37 +35,39 @@ CREATE TABLE if not exists `cbtp`.`child_table` (
   PRIMARY KEY (`c_id`),
     FOREIGN KEY (`m_id`)
     REFERENCES `cbtp`.`mother_table` (`m_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
+	ON DELETE CASCADE);
 
-CREATE TABLE if not exists `cbtp`.`mother_vaccin` (
-  `mv_id` INT NOT NULL,
-   `m_id` INT NOT NULL,
-  `tt1` TINYINT NULL,
-  `tt2` TINYINT NULL,
-  `tt3` TINYINT NULL,
-  `tt4` TINYINT NULL,
-  `tt5` TINYINT NULL,
-  `rh` TINYINT NULL,
+
+
+CREATE TABLE IF NOT EXISTS `cbtp`.`mother_vaccin` (
+  `mv_id` INT NOT NULL AUTO_INCREMENT,
+  `m_id` INT NOT NULL,
+  `tt1` TINYINT NOT NULL,
+  `tt2` TINYINT NOT NULL,
+  `tt3` TINYINT NOT NULL,
+  `tt4` TINYINT NOT NULL,
+  `tt5` TINYINT NOT NULL,
+  `rh` TINYINT NOT NULL,
   PRIMARY KEY (`mv_id`),
-    FOREIGN KEY (`m_id`)
-    REFERENCES `cbtp`.`mother_table` (`m_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
+  FOREIGN KEY (`m_id`)
+  REFERENCES `cbtp`.`mother_table` (`m_id`)
+  ON DELETE CASCADE
+);
 
 CREATE TABLE if not exists `cbtp`.`child_vaccine` (
-  `cv_id` INT NOT NULL,
+  `cv_id` INT NOT NULL auto_increment,
   `c_id` INT NOT NULL,
-  `r1` TINYINT NULL,
-  `r2` TINYINT NULL,
-  `r3` TINYINT NULL,
-  `r4` TINYINT NULL,
-  `r5` TINYINT NULL,
+  `r1` TINYINT not NULL,
+  `r2` TINYINT not NULL,
+  `r3` TINYINT not NULL,
+  `r4` TINYINT not NULL,
+  `r5` TINYINT not NULL,
   PRIMARY KEY (`cv_id`),
     FOREIGN KEY (`c_id`)
     REFERENCES `cbtp`.`child_table` (`c_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
+    ON DELETE CASCADE );
+
+
 create table if not exists cbtp.post (post_id int auto_increment primary key, tittle varchar(100) not null, catagory varchar(50) not null, description Text not null, date_of_post datetime not null);
 create table if not exists cbtp.post_img (post_img_id int auto_increment primary key,post_id int ,image_url varchar(255) , foreign key(post_id) references post(post_id));
 
@@ -116,5 +118,10 @@ INNER JOIN post_img
 
 
 
+INSERT INTO mother_table (m_id, f_name, m_name, l_name, bithdate, photo_url, blood_type, m_phone, zone, wereda, kebele)
+VALUES (1, 'John', 'Doe', 'Smith', '1990-01-01', 'photo.jpg', 'O+', '1234567890', 'Zone A', 'Wereda B', 'Kebele C');
+
+INSERT INTO mother_vaccin (mv_id, m_id, tt1, tt2, tt3, tt4, tt5, rh)
+VALUES (1, 1, 1, 0, 1, 0, 1, 0);
 
 
