@@ -15,32 +15,28 @@ if(isset($_POST['submit'])){
     if(!isset($_FILES['image']['name'])){
         $image_name = "";
     }
-    else{
-        //to upload image we need three things
-        //image name, source, destination
-        $image_name = $_FILES['image']['name']; 
+    else {
+        $image_name = $_FILES['image']['name'];
         $image_source = $_FILES['image']['tmp_name'];
-     
-        // to prevent image repleacement we rename image during uploading
-        // 1st get extention
-       // $parts = explode('.', $image_name);
-        //$ext = end($parts);
-        //$image_name ="food_catagory.'$ext'";
-        $image_destination = "../images/users/".$image_name;
-      
-       //finally upload
-        $uplode = move_uploaded_file($image_source,$image_destination);
-        //print_r($uplode);
-       
-        if($uplode==FALSE){
-            $_SESSION["add"]="faile to upload image";
-            header("Location:".HOMEURL."/admin/users.php");
+        
+        // Get the file extension
+        $extension = pathinfo($image_name, PATHINFO_EXTENSION);
+        
+        // Generate the new image name
+        $new_image_name = $id . $f_name . $m_name . $lname . '.' . $extension;
+        
+        $image_destination = "../images/users/" . $new_image_name;
+
+        $upload = move_uploaded_file($image_source, $image_destination);
+
+        if ($upload == FALSE) {
+            $_SESSION["add"] = "Failed to upload image";
+            header("Location:" . HOMEURL . "/registrar/mother.php");
             die();
         }
-        
     }
     
-    $query ="INSERT INTO `cbtp`.`users` (f_name,m_name,l_name,username,password,phone_number,email,role,image_url) VALUES('$f_name','$m_name','$l_name','$username','$password','$phone_number','$email','$role','$image_name')";
+    $query ="INSERT INTO `cbtp`.`users` (f_name,m_name,l_name,username,password,phone_number,email,role,image_url) VALUES('$f_name','$m_name','$l_name','$username','$password','$phone_number','$email','$role','$new_image_name')";
     echo $query;
     $result = mysqli_query($conn,$query)or die(mysqli_error());
  

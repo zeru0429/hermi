@@ -7,7 +7,7 @@ include("./parts/header.php");
     <title>Mother Profile</title>
     <style>
         body {
-            display: flex;
+            display: block;
             justify-content: center;
             align-items: center;
             height: 100vh;
@@ -119,18 +119,19 @@ include("./parts/header.php");
             $result = mysqli_query($conn, $query) or die(mysqli_error());
 
             if ($result) {
-                $row = mysqli_fetch_assoc($result);
-                $f_name = $row['f_name'];
-                $m_name = $row['m_name'];
-                $l_name = $row['l_name'];
-                $birthdate = $row['bithdate'];
-                $photo_url = $row['photo_url'];
-                $blood_type = $row['blood_type'];
-                $m_phone = $row['m_phone'];
-                $zone = $row['zone'];
-                $wereda = $row['wereda'];
-                $kebele = $row['kebele'];
+                while($rows=mysqli_fetch_assoc($result)){
+                $f_name = $rows['f_name'];
+                $m_name = $rows['m_name'];
+                $l_name = $rows['l_name'];
+                $birthdate = $rows['bithdate'];
+                $photo_url = $rows['photo_url'];
+                $blood_type = $rows['blood_type'];
+                $m_phone = $rows['m_phone'];
+                $zone = $rows['zone'];
+                $wereda = $rows['wereda'];
+                $kebele = $rows['kebele'];
             } 
+        }
         ?>
 
             <div>
@@ -199,14 +200,13 @@ include("./parts/header.php");
     <?php  
         $query = "SELECT * FROM cbtp.mother_vaccin WHERE m_id = $m_id";
         $result = mysqli_query($conn,$query) or die(mysqli_error());
-        $rows = mysqli_num_rows($result);
         while($rows=mysqli_fetch_assoc($result)){
-            $tt1 = $result["tt1"];
-            $tt2 = $_POST["tt2"];
-            $tt3 = $_POST["tt3"];
-            $tt4 = $_POST["tt4"];
-            $tt5 = $_POST["tt5"];
-            $rh = $_POST["rh"];
+            $tt1 = $rows["tt1"];
+            $tt2 = $rows["tt2"];
+            $tt3 = $rows["tt3"];
+            $tt4 = $rows["tt4"];
+            $tt5 = $rows["tt5"];
+            $rh = $rows["rh"];
         } 
     ?>
 

@@ -18,7 +18,7 @@ if (isset($_POST["vacinate"])) {
     $result = mysqli_query($conn,$query)or die(mysqli_error());
     if($result == True){
         $_SESSION["add"]=$m_id." sucessfully added";
-         header("Location:".HOMEURL."health/profile.php");
+         header("Location:".HOMEURL."health/mother_detail.php");
          
      }else{
          $_SESSION["add"]=$m_id." failed to added";
