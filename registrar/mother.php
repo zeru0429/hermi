@@ -139,56 +139,65 @@
            
               <div class="form-group">
                 <label for="name">First name</label>
-                <input type="text" class="form-control" name='f_name' />
+                <input require type="text" class="form-control" name='f_name' />
               </div>
 
               <div class="form-group">
                 <label for="name">middle name</label>
-                <input type="text"  name='m_name' class="form-control" />
+                <input require type="text"  name='m_name' class="form-control" />
               </div>
 
               <div class="form-group">
                 <label for="name">Last name</label>
-                <input type="text"  name='l_name' class="form-control" />
+                <input require type="text"  name='l_name' class="form-control" />
               </div>
               <div class="form-group">
                   <label for="date-of-birth">Date of Birth</label>
-                  <input type="text"  class="form-control" id="date-of-birth" name="birthdate" pattern="[0-9]{2}/[0-9]{2}/[0-9]{4}" required>
+                  <input require type="date"  class="form-control" id="date-of-birth" name="birthdate" pattern="[0-9]{2}/[0-9]{2}/[0-9]{4}" required>
               </div>
               <div class="form-group">
                 <label for="name">photo</label>
-                <td> <input type="file" name="image"> </td>
+                <td> <input type="file" name="image" require> </td>
               </div>  
 
               <div class="form-group">
                 <label for="name">blood type</label>
-                <input type="text"  name='blood_type' class="form-control" />
+                <select require name="blood_type" class="form-control" id="blood_type" default>
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
+                    <option value="AB+">AB+</option>
+                    <option value="AB-">AB-</option>
+                    <option value="O+">O+</option>
+                    <option value="O-">O-</option>
+                </select>
               </div>
               <div class="form-group">
                 <label for="name">Phone number</label>
-                <input type="text"  name='phone_number' class="form-control" />
+                <input require type="tel" id="phone" name="phone_number" class="form-control"  placeholder="+251-XX-XXX-XXXX">
               </div>
               <div class="form-group">
                 <label for="name">zone</label>
-                <input type="text"  name='zone' class="form-control" />
+                <input require type="text"  name='zone' class="form-control" />
               </div>
               <div class="form-group">
                 <label for="name">wereda</label>
-                <input type="text"  name='wereda' class="form-control" />
+                <input require type="text"  name='wereda' class="form-control" />
               </div>
               <div class="form-group">
                 <label for="name">kebele</label>
-                <input type="text"  name='kebele' class="form-control" />
+                <input require type="text"  name='kebele' class="form-control" />
               </div>
               
 
               <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" name='password' class="form-control" />
+                <input require type="password" name='password' class="form-control" />
               </div>
               <div class="form-group">
                 <label for="confirmPassword">Confirm Password</label>
-                <input type="password" name='c_password' class="form-control" />
+                <input require type="password" name='c_password' class="form-control" />
               </div>
           <div class="modal-footer">
             <button  data-dismiss="modal">Close</button>

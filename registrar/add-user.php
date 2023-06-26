@@ -1,43 +1,4 @@
 <?php include("./parts/header.php") ?>
-<style>
-    label {
-      display: block;
-      margin-bottom: 10px;
-    }
-    
-    input[type="text"], input[type="email"] {
-      width: 100%;
-      padding: 10px;
-      border: 2px solid #ccc;
-      border-radius: 4px;
-      box-sizing: border-box;
-      margin-bottom: 20px;
-    }
-    
-    .error {
-      border-color: red;
-    }
-    
-    #error-message {
-      color: red;
-      font-weight: bold;
-      margin-bottom: 20px;
-    }
-    
-    button[type="submit"] {
-      background-color: dodgerblue;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 16px;
-    }
-    
-    button[type="submit"]:hover {
-      background-color: #0055cc;
-    }
-  </style>
 <?php
 
 if(isset($_POST['submit'])){
