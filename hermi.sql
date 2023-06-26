@@ -1,4 +1,5 @@
-CREATE database if not EXISTS `infant`;
+CREATE database if not EXISTS `cbtp`;
+use `cbtp`;
 CREATE TABLE if not exists `cbtp`.`users` (
   `user_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `f_name` VARCHAR(45) NOT NULL,
@@ -68,17 +69,7 @@ CREATE TABLE if not exists `cbtp`.`child_vaccine` (
     REFERENCES `cbtp`.`child_table` (`c_id`)
     ON DELETE CASCADE );
 
-
-INSERT into cbtp.users
-
-
-
-
-
-
-
-
-CREATE TABLE cbtp.post_img (
+CREATE TABLE if not exists cbtp.post_img (
   post_img_id INT auto_increment not null,
   post_id INT not null,
   img_url VARCHAR(255) not null,
@@ -86,41 +77,11 @@ CREATE TABLE cbtp.post_img (
   FOREIGN KEY (post_id) REFERENCES cbtp.post (post_id)
 );
 
+INSERT INTO users (`user_id`,`f_name`,`m_name`,	`l_name`,`password`,`phone_number`,`email`,`role`,`image_url`)
+			values('20', 'mihiretu', 'tigistu', 'hailegiorgis', 'zeru', '21232f297a57a5a743894a0e4a801fc3', '+251949229226', 'mihiretutigistu@gmail.com', 'admin', 'IMG_0724.jpg');
+INSERT INTO users (`user_id`, `f_name`, `m_name`, `l_name`, `username`, `password`, `phone_number`, `email`, `role`, `image_url`)
+ values ('21', 'abem', 'tezera', 'moshago', 'abem', '81dc9bdb52d04dc20036dbd8313ed055', '+251949229226', 'mihiretutigistu@gmail.com', 'registrar', '20230509_093234.jpg');
 
 
-
-USE cbtp;
-SELECT post.tittle, 
-       post.catagory,
-       post.description,
-       post.date_of_post,
-       post_img.img_url
-FROM post
-INNER JOIN post_img
-  ON post.post_id = post_img.post_id order by post.date_of_post;
-
-
-
-<!-- News Card -->
-                    <div class="card">
-                      <img src="./images/posts/<?php echo $img_url; ?>" class="card-img-top" alt="<?php echo $img_url; ?>">
-                      <div class="card-body">
-                        <h5 class="card-title"><?php echo $title; ?></h5>
-                        <p class="card-text"><?php echo $description; ?>(cropped)</p>
-                        <a href="#" class="btn btn-primary">Read More</a>
-                      </div>
-                    </div>
-                    <!-- End News Card -->
-
-
-
-
-
-
-INSERT INTO mother_table (m_id, f_name, m_name, l_name, bithdate, photo_url, blood_type, m_phone, zone, wereda, kebele)
-VALUES (1, 'John', 'Doe', 'Smith', '1990-01-01', 'photo.jpg', 'O+', '1234567890', 'Zone A', 'Wereda B', 'Kebele C');
-
-INSERT INTO mother_vaccin (mv_id, m_id, tt1, tt2, tt3, tt4, tt5, rh)
-VALUES (1, 1, 1, 0, 1, 0, 1, 0);
 
 
