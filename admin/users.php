@@ -164,9 +164,16 @@
                 <label for="name">username</label>
                 <input type="text"  name='username' class="form-control" />
               </div>
+              <!-- (\'admin\',\'mother\',\'doctor\',\'registrar\',\'guest\')' -->
               <div class="form-group">
                 <label for="name">role</label>
-                <input type="text"  name='role' class="form-control" />
+                <select name="role" id="role">
+                  <option value="admin">admin</option>
+                  <option value="registrar">registrar</option>
+                  <option value="doctor">doctor</option>
+                  <option value="mother">mother</option>
+                   <option value="guest">guest</option>
+                </select>
               </div>
 
               <div class="form-group">
@@ -206,7 +213,7 @@
         </div>
       </div>
     </div>
-    <!--  Optional JavaScript -->
+    <!-- (\'admin\',\'mother\',\'doctor\',\'registrar\',\'guest\')' Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 
 

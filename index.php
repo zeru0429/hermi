@@ -33,7 +33,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a href="./admin/login.php" class="nav-link">
+              <a href="./login.php" class="nav-link">
                 <i class="fa fa-user-times"> Login</i>
               </a>
             </li>

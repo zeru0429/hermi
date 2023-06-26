@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="../css/style.min.css" />
     <link rel="stylesheet" href="resources/css/style.css" />
     <link rel="stylesheet" href="vendors/font-aweome/css/all.css" />
+    <link rel="stylesheet" href="../../css/profile.css">
     <title>Admin UI</title>
   </head>
   <body>
@@ -57,7 +58,7 @@
               </div>
             </li>
             <li class="nav-item">
-              <a href="logout.php" class="nav-link">
+              <a href="../logout.php" class="nav-link">
                 <i class="fa fa-user-times"> Logout</i>
               </a>
             </li>

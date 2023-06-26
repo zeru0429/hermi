@@ -9,7 +9,7 @@
     />
     <script src="script.min.js"></script>
 
-    <link rel="stylesheet" href="style.min.css" />
+    <link rel="stylesheet" href="./css/style.min.css" />
     <link rel="stylesheet" href="resources/css/style.css" />
     <link rel="stylesheet" href="vendors/font-aweome/css/all.css" />
     <title>Admin UI</title>
@@ -18,7 +18,7 @@
     <!-- NAVIGATION-->
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
       <div class="container">
-        <a href="index.html" class="navbar-brand">Infant Immunization</a>
+        <a href="index.php" class="navbar-brand">Infant Immunization</a>
         <button
           class="navbar-toggler"
           data-toggle="collapse"
@@ -32,7 +32,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="../index.php" class="nav-link">
+              <a href="index.php" class="nav-link">
                 <i class="fa fa-user-times"> Home</i>
               </a>
             </li>
@@ -93,7 +93,7 @@
 
 
 <?php
-include('../config/constant.php');
+include('./config/constant.php');
 
 if(isset($_POST['login'])){
     $username=$_POST['username'];
@@ -133,5 +133,5 @@ if(isset($_POST['login'])){
     }
 
 
-include("./parts/footer.php")
+include("./admin/parts/footer.php")
 ?>
