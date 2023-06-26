@@ -5,7 +5,7 @@
     <title>Profile</title>
     <style>
         body {
-            display: inline;
+            display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
@@ -152,7 +152,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <a href="update_admin.php?id=<?php echo $id; ?>" class="btn-secondary">Update Admin</a>
+                                        
                                         <a href="change_password.php?id=<?php echo $id; ?>" class="btn-secondary">Change Password</a>
                                     </td>
                                 </tr>
@@ -169,4 +169,4 @@
     </div>
  <div class="clear-fixt"></div>
     </div>
-    
+    <?php include("./parts/footer.php"); ?>
