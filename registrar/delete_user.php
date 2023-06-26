@@ -3,7 +3,7 @@
 // find id
 $id = $_GET['id'];
 // delete from db
-$query = "DELETE FROM `cbtp`.`mother_table` WHERE user_id ='$id'";
+$query = "DELETE FROM `cbtp`.`mother_table` WHERE m_id='$id'";
 $result = mysqli_query($conn,$query)or die(mysqli_error());
 if($result == True){
     $_SESSION["add"]=$id." deleted successfully";
