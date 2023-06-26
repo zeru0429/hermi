@@ -10,9 +10,11 @@
     <script src="script.min.js"></script>
 
     <link rel="stylesheet" href="./css/style.min.css" />
+    <link rel="stylesheet" href="./css/login.css">
     <link rel="stylesheet" href="resources/css/style.css" />
     <link rel="stylesheet" href="vendors/font-aweome/css/all.css" />
     <title>Admin UI</title>
+    
   </head>
   <body>
     <!-- NAVIGATION-->
@@ -27,12 +29,12 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a href="./admin/login.php" class="nav-link">
+              <a href="./login.php" class="nav-link">
                 <i class="fa fa-user-times"> Login</i>
               </a>
             </li>
             <li class="nav-item">
-              <a href="index.php" class="nav-link">
+              <a href="./index.php" class="nav-link">
                 <i class="fa fa-user-times"> Home</i>
               </a>
             </li>
@@ -115,6 +117,11 @@ if(isset($_POST['login'])){
                 $_SESSION["login"]=$id."login successfully";
                 $_SESSION["username"]=$username;
                 header("Location:".HOMEURL."registrar/index.php");
+              }
+              elseif($role == 'doctor'){
+                $_SESSION["login"]=$id."login successfully";
+                $_SESSION["username"]=$username;
+                header("Location:".HOMEURL."health/index.php");
               }
         }
     else{
