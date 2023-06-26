@@ -12,7 +12,8 @@ if (isset($_POST["vacinate"])) {
     // Prepare and execute the query
     $query ="UPDATE `cbtp`.`mother_vaccin` 
                 SET m_id ='$m_id',  tt1='$tt1', tt2='$tt2' ,
-                 tt3='$tt3', tt4='$tt4' , tt5='$tt5' , rh='$rh' ";
+                 tt3='$tt3', tt4='$tt4' , tt5='$tt5' , rh='$rh'
+                  where m_id='$m_id' ";
 
     
     $result = mysqli_query($conn,$query)or die(mysqli_error());

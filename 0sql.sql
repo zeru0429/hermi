@@ -31,7 +31,8 @@ CREATE TABLE if not exists `cbtp`.`child_table` (
   `f_name` VARCHAR(45) NOT NULL,
   `m_name` VARCHAR(45) NOT NULL,
   `l_name` VARCHAR(45) NOT NULL,
-  `bithdate` DATE not NULL,  
+  `bithdate` DATE not NULL,
+  `blood_type` varchar(10) not null  
   PRIMARY KEY (`c_id`),
     FOREIGN KEY (`m_id`)
     REFERENCES `cbtp`.`mother_table` (`m_id`)

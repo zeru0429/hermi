@@ -11,15 +11,21 @@ if(isset($_POST['submit'])){
     $query ="INSERT INTO `cbtp`.`child_table` 
     (m_id,f_name,m_name,l_name,bithdate,blood_type)
      VALUES
-    ('$m_id','$f_name','$m_name','$l_name','$birthdate','$blood_type')";
+    ('$m_id','$f_name','$m_name','$l_name','$birthdate','$blood_type')
+    ";
    
     $result = mysqli_query($conn,$query)or die(mysqli_error());
  
 if($result == True){
+    $query2 = "INSERT INTO cbtp.child_vaccine (c_id, r1, r2, r3, r4, r5)
+    VALUES (LAST_INSERT_ID(), 0, 0, 0, 0, 0)";
+    $result2 = mysqli_query($conn, $query2) or die(mysqli_error());
+    if ($result2) {
    $_SESSION["add"]=$username." sucessfully added";
     header("Location:".HOMEURL."registrar/children.php");
-    
-}else{
+    }
+}
+else{
     $_SESSION["add"]=$username." failed to added";
     header("Location:".HOMEURL."registrar/add-child.php");
 }
@@ -31,4 +37,4 @@ else{
 
 ?>
 
-<?php  include("./parts/footer.php") ?>
+<?php  include("./parts/footer.php"); ?>
