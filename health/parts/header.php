@@ -14,7 +14,6 @@
     <link rel="stylesheet" href="../css/style.min.css" />
     <link rel="stylesheet" href="resources/css/style.css" />
     <link rel="stylesheet" href="vendors/font-aweome/css/all.css" />
-    <link rel="stylesheet" href="../../css/profile.css">
     <title>Admin UI</title>
   </head>
   <body>
@@ -33,13 +32,10 @@
               <a href="index.php" class="nav-link active">Dashboard</a>
             </li>
             <li class="nav-item px-2">
-              <a href="post.php" class="nav-link">Post</a>
+              <a href="children.php" class="nav-link">Children</a>
             </li>
             <li class="nav-item px-2">
-              <a href="categories.php" class="nav-link">Vaccine</a>
-            </li>
-            <li class="nav-item px-2">
-              <a href="users.php" class="nav-link">Users</a>
+              <a href="mother.php" class="nav-link">Mothers</a>
             </li>
           </ul>
           <ul class="navbar-nav ml-auto">
