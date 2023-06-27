@@ -11,11 +11,12 @@ include("./parts/header.php");
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #f0f2f5;
+            
+            background-color: #121212;
         }
         
         .profile-container {
-            background-color: #fff;
+            background-color: #1e1e1e;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
             padding: 40px;
@@ -107,6 +108,7 @@ include("./parts/header.php");
             pointer-events: auto;
         }
     </style>
+
 </head>
 <body>
     <div class="profile-container">
@@ -199,6 +201,7 @@ include("./parts/header.php");
         <!-- Vaccination Information Popup -->
     <?php  
         $query = "SELECT * FROM cbtp.mother_vaccin WHERE m_id = $m_id";
+        
         $result = mysqli_query($conn,$query) or die(mysqli_error());
         while($rows=mysqli_fetch_assoc($result)){
             $tt1 = $rows["tt1"];
@@ -213,7 +216,7 @@ include("./parts/header.php");
         <div class="overlay" id="overlay"></div>
         <div class="popup" id="popup">
             <h2>Vaccination Information</h2>
-            <form method="POST" action="process_vaccination.php">
+            <form method="POST" action="#">
 
                 <input type="hidden" name="m_id" value="<?php echo $m_id; ?>">
                 <label for="tt1">TT1:</label>
@@ -234,7 +237,7 @@ include("./parts/header.php");
                 <label for="rh">RH:</label>
                 <input type="number" value="<?php echo $rh; ?>" name="rh" id="rh">
                 <br>
-                <input type="submit" value="Save" name='vacinate'>
+                <input type="submit" value="save" name='vacinate'>
                 <button onclick="hidePopup()" type="button">Cancel</button>
             </form>
         </div>
@@ -265,6 +268,39 @@ include("./parts/header.php");
 
  <?php 
  
+ if (isset($_POST["vacinate"])) {
+     $m_id = $_POST["m_id"];
+     $tt1 = $_POST["tt1"];
+     $tt2 = $_POST["tt2"];
+     $tt3 = $_POST["tt3"];
+     $tt4 = $_POST["tt4"];
+     $tt5 = $_POST["tt5"];
+     $rh = $_POST["rh"];
+     // Prepare and execute the query
+     $query1 ="UPDATE `cbtp`.`mother_vaccin` 
+                 SET m_id ='$m_id',  tt1='$tt1', tt2='$tt2' ,
+                  tt3='$tt3', tt4='$tt4' , tt5='$tt5' , rh='$rh'
+                   where m_id='$m_id' ";
+
+     $result1 = mysqli_query($conn,$query1)or die(mysqli_error());
+     if($result1 == True){
+         $_SESSION["add"]=$m_id." sucessfully added";
+          #header("Location:".HOMEURL."health/mother_detail.php");
+          echo $_SESSION['add'];
+          unset($_SESSION['add']);
+          
+      }else{
+          $_SESSION["add"]=$m_id." failed to added";
+          echo $_SESSION['add'];
+          unset($_SESSION['add']);
+      }
+ 
+ 
+ }else{
+     echo "btn not  clicked";
+ }
+ 
+  include("./parts/footer.php");?>
  
  include('./parts/footer.php'); ?>
 

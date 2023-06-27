@@ -65,10 +65,10 @@ $id = $_GET['id'];
                   <label for="date-of-birth">Date of Birth</label>
                   <input type="date" value='<?php echo $birthdate; ?>' class="form-control" id="date-of-birth" name="birthdate" pattern="[0-9]{2}/[0-9]{2}/[0-9]{4}" required>
               </div>
-              <div class="form-group">
+            <!--  <div class="form-group">
                 <label for="name">photo</label>
                 <td> <input type="file" name="image"> </td>
-              </div>  
+              </div>  -->
 
               <div class="form-group">
                 <label for="name">blood type</label>
@@ -129,26 +129,25 @@ if(isset($_POST['updatemother'])){
     $wereda = $_POST['wereda'];
     $kebele = $_POST['kebele'];
 
-    if(!isset($_FILES['image']['name'])){
-        $image_name = "";
-    }
-    else{
-        $image_name = $_FILES['image']['name']; 
-        $image_source = $_FILES['image']['tmp_name'];
-        $image_destination = "../images/mother/".$image_name;
-        $uplode = move_uploaded_file($image_source,$image_destination);
-        if($uplode==FALSE){
-            $_SESSION["add"]="faile to upload image";
-            #header("Location:".HOMEURL."/admin/users.php");
-            die();
-        }
+    // if(!isset($_FILES['image']['name'])){
+    //     $image_name = "";
+    // }
+    // else{
+    //     $image_name = $_FILES['image']['name']; 
+    //     $image_source = $_FILES['image']['tmp_name'];
+    //     $image_destination = "../images/mother/".$image_name;
+    //     $uplode = move_uploaded_file($image_source,$image_destination);
+    //     if($uplode==FALSE){
+    //         $_SESSION["add"]="faile to upload image";
+    //         #header("Location:".HOMEURL."/admin/users.php");
+    //         die();
+    //     }
      
-    }
+    // }
 
     $query ="UPDATE `cbtp`.`mother_table` SET
              f_name='$f_name', m_name='$m_name', 
              l_name='$l_name', bithdate='$birthdate',
-             photo_url='$image_name' 
              blood_type='$blood_type',
              m_phone='$phone_number',
              zone ='$zone',

@@ -3,23 +3,25 @@
 <html>
 <head>
     <title>Profile</title>
+    
     <style>
         body {
-            display: inline;
+            display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #f0f2f5;
+            background-color: #121212;
+            color: #fff;
         }
         
         .profile-container {
-            background-color: #fff;
+            background-color: #1e1e1e;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
             padding: 40px;
             max-width: 500px;
             width: 100%;
-            text-align: center;
+            text-align: left;
         }
         
         .profile-image {
@@ -69,10 +71,13 @@
         .btn-secondary:hover {
             background-color: #dfe3e8;
         }
-        .profile-table{
-            
+        
+        .success {
+            color: #4caf50;
         }
     </style>
+
+
 </head>
 <body>
     <div class="profile-container">
@@ -86,9 +91,7 @@
             $username = $_GET['username'];
         ?>
 
-        <div>
-            <a href="index.php" class="btn-primary">Back to dashboard</a>
-        </div>
+        
         
         <div class="profile-table">
             <table>
@@ -152,7 +155,6 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <a href="update_admin.php?id=<?php echo $id; ?>" class="btn-secondary">Update Admin</a>
                                         <a href="change_password.php?id=<?php echo $id; ?>" class="btn-secondary">Change Password</a>
                                     </td>
                                 </tr>
