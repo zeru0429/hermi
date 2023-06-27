@@ -13,6 +13,7 @@ while($rows=mysqli_fetch_assoc($result)){
 $query1 = "DELETE FROM `cbtp`.`post_img` WHERE post_id ='$id'";
 $result1 = mysqli_query($conn,$query1)or die(mysqli_error()); 
 if($result1 == True){
+
    $query = "DELETE FROM `cbtp`.`post` WHERE post_id ='$id'";
    $result = mysqli_query($conn,$query)or die(mysqli_error());
    
@@ -23,6 +24,13 @@ if($result1 == True){
 
    $sourcePath = $sourceDirectory . $imageName;
    $destinationPath = $destinationDirectory . $imageName;
+   $moveBackup = rename($sourcePath, $destinationPath);
+
+   if ($moveBackup) {
+    echo 'Image moved to backup directory successfully.';
+   } else {
+    echo 'Failed to move image to backup directory.';
+   }
     $_SESSION["add"]=$id." deleted successfully";
      header("Location:".HOMEURL."admin/post.php");}
      else{

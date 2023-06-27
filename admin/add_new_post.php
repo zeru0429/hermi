@@ -63,9 +63,10 @@ if(isset($_POST['updatepost'])){
     } else {
         $image_name = $_FILES['image']['name'];
         $image_source = $_FILES['image']['tmp_name'];
-        $image_destination = "../images/posts/".$title.".jpg"; // Renaming the image with the news title
+        $image_extension = pathinfo($image_name, PATHINFO_EXTENSION);
+        $image_destination = "../images/posts/".$title.".".$image_extension; // Renaming the image with the news title and original extension
         $upload = move_uploaded_file($image_source, $image_destination);
-
+        $image_name = $title.".".$image_extension;
         if($upload == FALSE){
             $_SESSION["add"] = "Failed to upload image";
             die();

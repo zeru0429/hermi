@@ -73,7 +73,7 @@
                               FROM post
                               INNER JOIN post_img
                               ON post.post_id = post_img.post_id
-                              ORDER BY post.date_of_post DESC
+                              ORDER BY post.date_of_post ASC
                               LIMIT $offset, $posts_per_page";
 
                     $result = mysqli_query($conn, $query) or die(mysqli_error());
