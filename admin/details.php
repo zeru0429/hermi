@@ -69,18 +69,14 @@ $id = $_GET['id'];
                   <div class="form-group">
                     <label for="categories">Categories </label>
                     <select name="catagory" id="catagory" value="<?php echo $catagory; ?>" class="form-control">
-                      <option value="Admin" <?php if($catagory=='Admin') echo "selected";?> > Admin </option>
-                      <option value="Mother" <?php if($catagory=='Mother') echo "selected";?> > Mother </option>
-                      <option value="Registrar" <?php if($catagory=='Registrar') echo "selected";?> > Registrar </option>
-                      <option value="Doctor" <?php if($catagory=='Doctor') echo "selected";?> > Doctorr </option>
-                      <option value="Guest" <?php if($catagory=='Guest') echo "selected";?> > Guest </option>
+                      <option value="mothers vacine" <?php if($catagory=='mothers vacine') echo "selected";?> >Mother vacine</option>
+                      <option value="Children vacine" <?php if($catagory=='Children vacine') echo "selected";?> > Children vacine </option>
+                      <option value="Infant news" <?php if($catagory=='Infant news') echo "selected";?> > Infant news </option>
+                      <option value="daily news" <?php if($catagory=='daily news') echo "selected";?> >daily news </option>
+                      <option value="other" <?php if($catagory=='other') echo "selected";?> > other </option>
                     </select>
                   </div>
-                  <div class="form-group">
-                    <label for="file">Image Upload</label>
-                    <input type="file" name="image" id="" class="form-control" />
-                    <small class="form-text text-muted">Ma file 3mb</small>
-                  </div>
+      
                   <div class="form-group">
                     <label for="body">Body</label>
                     <textarea name="editor1" id="" class="form-control"><?php echo $description; ?></textarea>
