@@ -1,7 +1,8 @@
-<?php include("./parts/header.php");
+<?php
+include("./parts/header.php");
 
-if(isset($_SESSION['add'])){
-    echo "<h1 class='error'>". $_SESSION['add']."</h1>";
+if (isset($_SESSION['add'])) {
+    echo "<h1 class='error'>" . $_SESSION['add'] . "</h1>";
     unset($_SESSION['add']);
 }
 ?>
@@ -16,14 +17,14 @@ if(isset($_SESSION['add'])){
                 </button>
             </div>
             <div class="modal-body">
-                <form action="#" method="post" enctype='multipart/form-data'>
+                <form action="#" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="title">Title</label>
-                        <input type="text" name='title' class="form-control" />
+                        <input type="text" name="title" class="form-control" />
                     </div>
                     <div class="form-group">
                         <label for="category">Category</label>
-                        <select class="form-control" name='category'>
+                        <select class="form-control" name="category">
                             <option value="mothers vacine">mothers vacine</option>
                             <option value="Children vacine">Children vacine</option>
                             <option value="Infant news">Infant news</option>
@@ -42,8 +43,8 @@ if(isset($_SESSION['add'])){
                     </div>
 
                     <div class="modal-footer">
-                        <a href='post.php' class="btn btn-secondary" data-dismiss="modal">Close</a>
-                        <input type="submit" name='updatepost' value="Post" class="btn btn-primary">
+                        <a href="post.php" class="btn btn-secondary" data-dismiss="modal">Close</a>
+                        <input type="submit" name="updatepost" value="Post" class="btn btn-primary">
                     </div>
                 </form>
             </div>
@@ -51,23 +52,23 @@ if(isset($_SESSION['add'])){
     </div>
 </div>
 
-<?php  
-if(isset($_POST['updatepost'])){
+<?php
+if (isset($_POST['updatepost'])) {
     $title = $_POST['title'];
     $category = $_POST['category'];
     $editor1 = $_POST["editor1"];
     $date_of_post = date('Y-m-d h:m:s');
-    
-    if(!isset($_FILES['image']['name'])){
+
+    if (!isset($_FILES['image']['name'])) {
         $image_name = "";
     } else {
         $image_name = $_FILES['image']['name'];
         $image_source = $_FILES['image']['tmp_name'];
         $image_extension = pathinfo($image_name, PATHINFO_EXTENSION);
-        $image_destination = "../images/posts/".$title.".".$image_extension; // Renaming the image with the news title and original extension
+        $image_destination = "../images/posts/" . $title . "." . $image_extension; // Renaming the image with the news title and original extension
         $upload = move_uploaded_file($image_source, $image_destination);
-        $image_name = $title.".".$image_extension;
-        if($upload == FALSE){
+        $image_name = $title . "." . $image_extension;
+        if ($upload == FALSE) {
             $_SESSION["add"] = "Failed to upload image";
             die();
         }
@@ -76,18 +77,18 @@ if(isset($_POST['updatepost'])){
     $query = "INSERT INTO `cbtp`.`post` (tittle, catagory, description, date_of_post) VALUES ('$title', '$category', '$editor1', '$date_of_post')";
     $result = mysqli_query($conn, $query) or die(mysqli_error());
 
-    if($result == True){
-        $_SESSION["add"] = $title." successfully added";
+    if ($result == True) {
+        $_SESSION["add"] = $title . " successfully added";
     } else {
-        $_SESSION["add"] = $title." failed to add";
+        $_SESSION["add"] = $title . " failed to add";
     }
 
     $query2 = "SELECT post_id FROM post WHERE date_of_post='$date_of_post'";
     $result2 = mysqli_query($conn, $query2) or die(mysqli_error());
     $rows2 = mysqli_num_rows($result2);
 
-    if ($rows2 > 0){
-        while($rows2 = mysqli_fetch_assoc($result2)){
+    if ($rows2 > 0) {
+        while ($rows2 = mysqli_fetch_assoc($result2)) {
             $id2 = $rows2['post_id'];
         }
     }
@@ -95,11 +96,15 @@ if(isset($_POST['updatepost'])){
     $query5 = "INSERT INTO `cbtp`.`post_img` (post_id, img_url) VALUES ('$id2', '$image_name')";
     $result5 = mysqli_query($conn, $query5) or die(mysqli_error());
 
-    if($result5 == True){
-        $_SESSION["add"] = $image_name." successfully added";
+    if ($result5 == True) {
+        $_SESSION["add"] = $image_name . " successfully added";
     } else {
-        $_SESSION["add"] = $image_name." failed to add";
+        $_SESSION["add"] = $image_name . " failed to add";
     }
+
+    // Redirect to add-new-post.php
+    header("Location: post.php");
+    exit();
 } else {
     echo "Button not clicked";
 }
