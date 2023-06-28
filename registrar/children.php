@@ -5,8 +5,8 @@ $mother_id_list = [];
 $query = "SELECT m_id FROM cbtp.mother_table";
 $result = mysqli_query($conn, $query) or die(mysqli_error());
 $rows = mysqli_num_rows($result);
-while ($rows = mysqli_fetch_assoc($result)) {
-    array_push($mother_id_list, $rows['m_id']);
+while ($row = mysqli_fetch_assoc($result)) {
+    array_push($mother_id_list, $row['m_id']);
 }
 ?>
 
@@ -82,12 +82,12 @@ while ($rows = mysqli_fetch_assoc($result)) {
                             if ($rows > 0) {
                                 $count = 1;
                                 // check the number of data in db
-                                while ($rows = mysqli_fetch_assoc($result)) {
-                                    $id = $rows['c_id'];
-                                    $m_id = $rows['m_id'];
-                                    $f_name = $rows['f_name'];
-                                    $m_name = $rows["m_name"];
-                                    $l_name = $rows['l_name'];
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                    $id = $row['c_id'];
+                                    $m_id = $row['m_id'];
+                                    $f_name = $row['f_name'];
+                                    $m_name = $row["m_name"];
+                                    $l_name = $row['l_name'];
                             ?>
                             <tr>
                                 <td><?php echo $id; ?></td>
@@ -132,7 +132,7 @@ while ($rows = mysqli_fetch_assoc($result)) {
                     <span>&times;</span>
                 </button>
             </div>
-            <form action='./add-child.php' method='post' enctype='multipart/form-data'>
+            <form id="addChildForm" action="./add-child.php" method="post" enctype="multipart/form-data">
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="mother_id">Mother ID</label>
@@ -140,7 +140,7 @@ while ($rows = mysqli_fetch_assoc($result)) {
                             <?php
                             foreach ($mother_id_list as $value) {
                             ?>
-                            <option value="<?php echo $value; ?>"><?php echo $value; ?></option>
+                                <option value="<?php echo $value; ?>"><?php echo $value; ?></option>
                             <?php
                             }
                             ?>
@@ -148,15 +148,15 @@ while ($rows = mysqli_fetch_assoc($result)) {
                     </div>
                     <div class="form-group">
                         <label for="f_name">First Name</label>
-                        <input type="text" class="form-control" name='f_name' required>
+                        <input type="text" class="form-control" name="f_name" required>
                     </div>
                     <div class="form-group">
                         <label for="m_name">Middle Name</label>
-                        <input type="text" class="form-control" name='m_name' required>
+                        <input type="text" class="form-control" name="m_name" required>
                     </div>
                     <div class="form-group">
                         <label for="l_name">Last Name</label>
-                        <input type="text" class="form-control" name='l_name' required>
+                        <input type="text" class="form-control" name="l_name" required>
                     </div>
                     <div class="form-group">
                         <label for="date-of-birth">Date of Birth</label>
@@ -178,11 +178,48 @@ while ($rows = mysqli_fetch_assoc($result)) {
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <input type="submit" class="btn btn-warning" name='submit' value="Submit">
+                    <input type="submit" class="btn btn-warning" name="submit" value="Submit">
                 </div>
             </form>
         </div>
     </div>
 </div>
+
+<script>
+    // JavaScript validation
+    document.getElementById('addChildForm').addEventListener('submit', function(event) {
+        var firstNameInput = document.querySelector('input[name="f_name"]');
+        var middleNameInput = document.querySelector('input[name="m_name"]');
+        var lastNameInput = document.querySelector('input[name="l_name"]');
+        var birthdateInput = document.getElementById('date-of-birth');
+
+        var nameRegex = /^[a-zA-Z\s]+$/;
+
+        if (!nameRegex.test(firstNameInput.value)) {
+            alert("Invalid input: First name can only contain letters.");
+            event.preventDefault();
+        } else if (!nameRegex.test(middleNameInput.value)) {
+            alert("Invalid input: Middle name can only contain letters.");
+            event.preventDefault();
+        } else if (!nameRegex.test(lastNameInput.value)) {
+            alert("Invalid input: Last name can only contain letters.");
+            event.preventDefault();
+        } else {
+            var currentDate = new Date();
+            var selectedDate = new Date(birthdateInput.value);
+            var minDate = new Date();
+            minDate.setFullYear(minDate.getFullYear() - 10);
+
+            if (selectedDate > currentDate) {
+                alert("Invalid input: Date of Birth cannot be in the future.");
+                event.preventDefault();
+            } else if (selectedDate > minDate) {
+                alert("Invalid input: Date of Birth must be at least 10 years ago.");
+                event.preventDefault();
+            }
+        }
+    });
+</script>
+
 
 <?php include("./parts/footer.php"); ?>
