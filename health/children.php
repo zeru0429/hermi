@@ -95,7 +95,7 @@ while($rows=mysqli_fetch_assoc($result)){
 
                 <div class="row">
                   <div class="col-md-6">
-                    <a href="update_child.php?id=<?php echo $id ?>"
+                    <a href="child_detail.php?id=<?php echo $id;?>"
                       class="btn btn-primary btn-block">
                         <i class="fa fa-plus">Profile and vaccine </i>
                     </a>

@@ -108,6 +108,73 @@ include("./parts/header.php");
             pointer-events: auto;
         }
     </style>
+ <style>
+    /* ...existing styles... */
+
+    /* Child List Popup Styles */
+    #childListPopup ul {
+        list-style: none;
+        padding: 0;
+        margin: 20px 0;
+    }
+
+    #childListPopup li {
+        margin-bottom: 10px;
+    }
+
+    #childListPopup h2 {
+        margin-bottom: 20px;
+    }
+
+    /* Vaccination Information Popup Styles */
+    #popup form {
+        margin-top: 20px;
+    }
+
+    #popup label {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: bold;
+    }
+
+    #popup select {
+        margin-bottom: 10px;
+        padding: 8px;
+        font-size: 14px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+    }
+
+    #popup input[type="submit"],
+    #popup button {
+        display: inline-block;
+        padding: 8px 16px;
+        font-size: 14px;
+        font-weight: 600;
+        text-decoration: none;
+        border-radius: 4px;
+        transition: background-color 0.3s ease;
+    }
+
+    #popup input[type="submit"] {
+        color: #fff;
+        background-color: #4267B2;
+        border: none;
+    }
+
+    #popup button {
+        color: #000;
+        background-color: #e4e6eb;
+        border: none;
+        margin-right: 10px;
+    }
+
+    #popup input[type="submit"]:hover,
+    #popup button:hover {
+        background-color: #3b5998;
+    }
+</style>
+
 
 </head>
 <body>
@@ -185,7 +252,8 @@ include("./parts/header.php");
             </div>
 
             <div>
-                <a href="#" class="btn-primary">Child List</a>
+                <a href="#" class="btn-primary" onclick="showChildListPopup()">Child List</a>
+
                 <button onclick="showPopup()" class="btn-primary">Vaccination Information</button>
             </div>
         </div>
@@ -193,8 +261,26 @@ include("./parts/header.php");
         <!-- Child List Popup -->
         <div class="overlay" id="overlay"></div>
         <div class="popup" id="childListPopup">
-            <h2>Child List</h2>
+            <h2>Child data</h2>
+           
             <!-- Add your child list content here -->
+            <?php  
+                $query = "SELECT * FROM cbtp.child_table WHERE m_id = $m_id";
+                
+                $result = mysqli_query($conn,$query) or die(mysqli_error());
+                while($rows=mysqli_fetch_assoc($result)){
+                    $c_id = $rows["c_id"];
+                    $f_name = $rows["f_name"];
+                    $m_name = $rows["m_name"];
+             ?>
+                <ul>
+                <li><h2><a href="./child_detail.php?id=<?php echo $c_id; ?>"><?php echo $f_name ?></a></h2></li>
+            </ul>
+             <?php
+
+                } 
+            ?>
+            
             <button onclick="hideChildListPopup()" class="btn-secondary">Close</button>
         </div>
 
@@ -215,7 +301,7 @@ include("./parts/header.php");
 
         <div class="overlay" id="overlay"></div>
         <div class="popup" id="popup">
-            <h2>Vaccination Information</h2>
+            <h2>Vaccination data</h2>
     
         <form method="POST" action="#">
             <input type="hidden" name="m_id" value="<?php echo $m_id; ?>">
@@ -328,5 +414,4 @@ include("./parts/header.php");
  
   include("./parts/footer.php");?>
  
- include('./parts/footer.php'); ?>
 
