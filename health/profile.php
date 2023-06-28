@@ -88,9 +88,6 @@
             $username = $_GET['username'];
         ?>
 
-        <div>
-            <a href="index.php" class="btn-primary">Back to dashboard</a>
-        </div>
         
         <div class="profile-table">
             <table>
@@ -154,7 +151,6 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <a href="update_admin.php?id=<?php echo $id; ?>" class="btn-secondary">Update Admin</a>
                                         <a href="change_password.php?id=<?php echo $id; ?>" class="btn-secondary">Change Password</a>
                                     </td>
                                 </tr>

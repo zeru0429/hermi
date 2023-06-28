@@ -123,27 +123,27 @@
           <span>&times;</span>
         </button>
       </div>
-      <form action='./add-user.php' method='post' enctype='multipart/form-data'>
+      <form action='./add-user.php' method='post' enctype='multipart/form-data' onsubmit="return validateForm()">
         <div class="modal-body">
           <div class="form-group">
             <label for="name">First name</label>
-            <input type="text" class="form-control" name='f_name' />
+            <input type="text" class="form-control" name='f_name' required pattern="[A-Za-z]+" />
           </div>
           <div class="form-group">
             <label for="name">Middle name</label>
-            <input type="text" name='m_name' class="form-control" />
+            <input type="text" name='m_name' class="form-control" required pattern="[A-Za-z]+" />
           </div>
           <div class="form-group">
             <label for="name">Last name</label>
-            <input type="text" name='l_name' class="form-control" />
+            <input type="text" name='l_name' class="form-control" required pattern="[A-Za-z]+" />
           </div>
           <div class="form-group">
             <label for="name">Username</label>
-            <input type="text" name='username' class="form-control" />
+            <input type="text" name='username' class="form-control" required pattern="[A-Za-z0-9]+" />
           </div>
           <div class="form-group">
             <label for="name">Role</label>
-            <select name="role" id="role">
+            <select name="role" id="role" required>
               <option value="admin">admin</option>
               <option value="registrar">registrar</option>
               <option value="doctor">doctor</option>
@@ -153,25 +153,27 @@
           </div>
           <div class="form-group">
             <label for="name">Phone number</label>
-            <input type="text" name='phone_number' class="form-control" />
+            <input type="text" name='phone_number' class="form-control" required pattern="[0-9]+" />
           </div>
           <div class="form-group">
             <label for="name">Photo</label>
-            <td> <input type="file" name="image"> </td>
+            <input type="file" name="image" required />
           </div>
           <div class="form-group">
             <label for="Email">Email</label>
-            <input type="email" name='email' class="form-control" />
+            <input type="email" name='email' class="form-control" required pattern="^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$" />
           </div>
           <div class="form-group">
             <label for="password">Password</label>
-            <input type="password" name='password' class="form-control" />
+            <input type="password" name='password' class="form-control" required pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"/>
           </div>
           <div class="form-group">
             <label for="confirmPassword">Confirm Password</label>
-            <input type="password" name='c_password' class="form-control" />
+            <input type="password" name='c_password' class="form-control" required pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$" />
           </div>
-          <div class="modal-footer">
+          <div
+
+ class="modal-footer">
             <button data-dismiss="modal">Close</button>
             <input type="submit" class="btn btn-warning" name='submit' value="Submit">
           </div>
@@ -180,6 +182,66 @@
     </div>
   </div>
 </div>
+
+<script>
+  function validateForm() {
+    var firstName = document.getElementsByName('f_name')[0].value;
+    var middleName = document.getElementsByName('m_name')[0].value;
+    var lastName = document.getElementsByName('l_name')[0].value;
+    var username = document.getElementsByName('username')[0].value;
+    var phoneNumber = document.getElementsByName('phone_number')[0].value;
+    var email = document.getElementsByName('email')[0].value;
+    var password = document.getElementsByName('password')[0].value;
+    var confirmPassword = document.getElementsByName('c_password')[0].value;
+
+    if (firstName === "") {
+      alert("Please enter the first name.");
+      return false;
+    }
+
+    if (middleName === "") {
+      alert("Please enter the middle name.");
+      return false;
+    }
+
+    if (lastName === "") {
+      alert("Please enter the last name.");
+      return false;
+    }
+
+    if (username === "") {
+      alert("Please enter the username.");
+      return false;
+    }
+
+    if (phoneNumber === "") {
+      alert("Please enter the phone number.");
+      return false;
+    }
+
+    if (email === "") {
+      alert("Please enter the email.");
+      return false;
+    }
+
+    if (password === "") {
+      alert("Please enter the password.");
+      return false;
+    }
+
+    if (confirmPassword === "") {
+      alert("Please enter the confirm password.");
+      return false;
+    }
+
+    if (password !== confirmPassword) {
+      alert("Passwords do not match");
+      return false;
+    }
+
+    return true;
+  }
+</script>
 
 <!-- JavaScript -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

@@ -124,42 +124,22 @@ if(isset($_POST['updatemother'])){
     $birthdate =$_POST['birthdate'];
     $blood_type = $_POST['blood_type'];
     $phone_number = $_POST["phone_number"];
-    $password = md5($_POST['password']);
-    $zone = $_POST['zone'];
     $wereda = $_POST['wereda'];
     $kebele = $_POST['kebele'];
-
-    // if(!isset($_FILES['image']['name'])){
-    //     $image_name = "";
-    // }
-    // else{
-    //     $image_name = $_FILES['image']['name']; 
-    //     $image_source = $_FILES['image']['tmp_name'];
-    //     $image_destination = "../images/mother/".$image_name;
-    //     $uplode = move_uploaded_file($image_source,$image_destination);
-    //     if($uplode==FALSE){
-    //         $_SESSION["add"]="faile to upload image";
-    //         #header("Location:".HOMEURL."/admin/users.php");
-    //         die();
-    //     }
-     
-    // }
-
-    $query ="UPDATE `cbtp`.`mother_table` SET
-             f_name='$f_name', m_name='$m_name', 
-             l_name='$l_name', bithdate='$birthdate',
-             blood_type='$blood_type',
-             m_phone='$phone_number',
-             zone ='$zone',
-             wereda = '$wereda'
-             kebele = '$kebele'
-             where
-             m_id='$id' ";
-
+    
+    $query = "UPDATE `cbtp`.`mother_table` SET
+              f_name='$f_name', m_name='$m_name',
+              l_name='$l_name', bithdate='$birthdate',
+              blood_type='$blood_type',
+              m_phone='$phone_number',
+              zone ='$zone',
+              wereda = '$wereda',
+              kebele = '$kebele'
+              WHERE m_id='$id' ";
+    
     $result = mysqli_query($conn,$query)or die(mysqli_error());
-
     if($result == True){
-        $_SESSION["add"]=$username." updated successfully";
+        $_SESSION["add"]=$f_name." updated successfully";
         #header("Location:".H OMEURL."admin/users.php");
          
      }else{

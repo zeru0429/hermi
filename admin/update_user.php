@@ -34,22 +34,22 @@ $id = $_GET['id'];
                         $m_name = $rows["m_name"];
                         $l_name=$rows['l_name'];
                         $phone_number = $rows["phone_number"];
-                        $email = $rows['email']; 
+                        $email = $rows['email'];
+                        $image_url = $rows['image_url'];
                        
         ?>
 
-
-    <form action='#' method='post' enctype='multipart/form-data' >
+<form action='#' method='post' enctype='multipart/form-data' onsubmit="return validateForm()">
     <div class="modal-body">
-    
+
         <div class="form-group">
             <label for="name">First name</label>
             <input type="text" class="form-control" name='f_name' value='<?php echo $f_name ?>' />
         </div>
 
         <div class="form-group">
-            <label for="name">middle name</label>
-            <input type="text"  name='m_name' value='<?php echo $m_name ?>' class="form-control" />
+            <label for="name">Middle name</label>
+            <input type="text" name='m_name' value='<?php echo $m_name ?>' class="form-control" />
         </div>
 
         <div class="form-group">
@@ -58,41 +58,98 @@ $id = $_GET['id'];
         </div>
 
         <div class="form-group">
-            <label for="name">username</label>
-            <input type="text" value='<?php echo $username ?>'  name='username' class="form-control" />
+            <label for="name">Username</label>
+            <input type="text" value='<?php echo $username ?>' name='username' class="form-control" />
         </div>
+
         <div class="form-group">
-            <label for="name">role</label>
-            <input type="text" value='<?php echo $rol?>' name='role' class="form-control" />
+            <label for="name">Role</label>
+            <select name="role" id="role" required>
+                <option value="admin" <?php if ($rol == 'admin') {
+                    echo 'selected';
+                } ?>>admin</option>
+                <option value="registrar" <?php if ($rol == 'registrar') {
+                    echo 'selected';
+                } ?>>registrar</option>
+                <option value="doctor" <?php if ($rol == 'doctor') {
+                    echo 'selected';
+                } ?>>doctor</option>
+                <option value="mother" <?php if ($rol == 'mother') {
+                    echo 'selected';
+                } ?>>mother</option>
+                <option value="guest" <?php if ($rol == 'guest') {
+                    echo 'selected';
+                } ?>>guest</option>
+            </select>
         </div>
 
         <div class="form-group">
             <label for="name">Phone number</label>
-            <input type="text" value='<?php echo $phone_number?>'  name='phone_number' class="form-control" />
-        </div>
-
-        <div class="form-group">
-            <label for="name">photo</label>
-            <td> <input type="file" name="image"> </td>
+            <input type="text" value='<?php echo $phone_number ?>' name='phone_number' class="form-control" />
         </div>
 
         <div class="form-group">
             <label for="Email">Email</label>
             <input type="email" value='<?php echo $email ?>' name='email' class="form-control" />
         </div>
-
-            <?php }}?>
-
-    <div class="modal-footer">
-        <label for=""><a href="users.php">Close</a></label>
-        <input type="submit"  class="btn btn-warning" name='updateuser' value="Update">
-    </div>
+<?php }}?>
+        <div class="modal-footer">
+            <label for=""><a href="users.php">Close</a></label>
+            <input type="submit" class="btn btn-warning" name='updateuser' value="Update">
+        </div>
 
     </div>
-    </form>
-</div>
-</div>
-</div>
+</form>
+
+<script>
+    function validateForm() {
+        var firstName = document.getElementsByName('f_name')[0].value;
+        var middleName = document.getElementsByName('m_name')[0].value;
+        var lastName = document.getElementsByName('l_name')[0].value;
+        var username = document.getElementsByName('username')[0].value;
+        var phoneNumber = document.getElementsByName('phone_number')[0].value;
+        var email = document.getElementsByName('email')[0].value;
+
+        // Regular expressions for validation
+        var nameRegex = /^[A-Za-z]+$/;
+        var usernameRegex = /^[A-Za-z0-9]+$/;
+        var phoneRegex = /^[0-9]+$/;
+        var emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+
+        if (!nameRegex.test(firstName)) {
+            alert("Invalid first name");
+            return false;
+        }
+
+        if (!nameRegex.test(middleName)) {
+            alert("Invalid middle name");
+            return false;
+        }
+
+        if (!nameRegex.test(lastName)) {
+            alert("Invalid last name");
+            return false;
+        }
+
+        if (!usernameRegex.test(username)) {
+            alert("Invalid username");
+            return false;
+        }
+
+        if (!phoneRegex.test(phoneNumber)) {
+            alert("Invalid phone number");
+            return false;
+        }
+
+        if (!emailRegex.test(email)) {
+            alert("Invalid email");
+            return false;
+        }
+
+        return true;
+    }
+</script>
+
 <!--  Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <?php 
@@ -104,28 +161,47 @@ if(isset($_POST['updateuser'])){
     $l_name=$_POST['l_name'];
     $phone_number = $_POST["phone_number"];
     $email = $_POST['email'];
-    if(!isset($_FILES['image']['name'])){
-        $image_name = "";
-    }
-    else{
-        $image_name = $_FILES['image']['name']; 
-        $image_source = $_FILES['image']['tmp_name'];
-        $image_destination = "../images/users/".$image_name;
-        $uplode = move_uploaded_file($image_source,$image_destination);
-        if($uplode==FALSE){
-            $_SESSION["add"]="faile to upload image";
-            #header("Location:".HOMEURL."/admin/users.php");
-            die();
-        }
+    // $previesimg = $_POST['previesimg'];
+    // if(!isset($_FILES['image']['name'])){
+    //     $image_name = $previesimg;
+    // }
+    // else{
+    //     // moving the previes image
+    //     $sourceDirectory = '../images/users/';
+    //     $destinationDirectory = '../backup/image/users/';
+    //     $imageName =$previesimg;
+
+    //     $sourcePath = $sourceDirectory . $imageName;
+    //     $destinationPath = $destinationDirectory . $imageName;
+
+    //     // adding new image
+
+    //     $image_name = $_FILES['image']['name'];
+    //     $image_source = $_FILES['image']['tmp_name'];
+        
+    //     // Get the file extension
+    //     $extension = pathinfo($image_name, PATHINFO_EXTENSION);
+        
+    //     // Generate the new image name
+    //     $new_image_name =$f_name . $m_name . $lname . '.' . $extension;
+        
+    //     $image_destination = "../images/users/" . $new_image_name;
+
+    //     $upload = move_uploaded_file($image_source, $image_destination);
+
+    //     if($uplode==FALSE){
+    //         $_SESSION["add"]="faile to upload image";
+    //         #header("Location:".HOMEURL."/admin/users.php");
+    //         die();
+    //     }
      
-    }
+    // }
 
     $query ="UPDATE `cbtp`.`users` SET
              f_name='$f_name', m_name='$m_name', 
              l_name='$l_name', username='$username', 
              phone_number='$phone_number', 
              email='$email', role='$role' where user_id='$id' ";
-
     $result = mysqli_query($conn,$query)or die(mysqli_error());
 
     if($result == True){
@@ -134,7 +210,7 @@ if(isset($_POST['updateuser'])){
          
      }else{
         
-           $_SESSION["add"]=" failed to Update";
+        $_SESSION["add"]=" failed to Update";
          if(isset($_SESSION['add'])){
         echo "<h1 class='error'>". $_SESSION['add']."</h1>";
         unset($_SESSION['add']);

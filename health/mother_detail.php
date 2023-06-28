@@ -185,7 +185,7 @@ include("./parts/header.php");
             </div>
 
             <div>
-                <a href="child_list.php?m_id=<?php echo $m_id; ?>" class="btn-primary">Child List</a>
+                <a href="#" class="btn-primary">Child List</a>
                 <button onclick="showPopup()" class="btn-primary">Vaccination Information</button>
             </div>
         </div>
@@ -216,30 +216,56 @@ include("./parts/header.php");
         <div class="overlay" id="overlay"></div>
         <div class="popup" id="popup">
             <h2>Vaccination Information</h2>
-            <form method="POST" action="#">
+    
+        <form method="POST" action="#">
+            <input type="hidden" name="m_id" value="<?php echo $m_id; ?>">
+            
+            <label for="tt1">TT1:</label>
+            <select name="tt1" id="tt1">
+                <option value="1" <?php echo ($tt1 == 1) ? "selected" : ""; ?>>1</option>
+                <option value="0" <?php echo ($tt1 == 0) ? "selected" : ""; ?>>0</option>
+            </select>
+            <br>
+            
+            <label for="tt2">TT2:</label>
+            <select name="tt2" id="tt2">
+                <option value="1" <?php echo ($tt2 == 1) ? "selected" : ""; ?>>1</option>
+                <option value="0" <?php echo ($tt2 == 0) ? "selected" : ""; ?>>0</option>
+            </select>
+            <br>
+            
+            <label for="tt3">TT3:</label>
+            <select name="tt3" id="tt3">
+                <option value="1" <?php echo ($tt3 == 1) ? "selected" : ""; ?>>1</option>
+                <option value="0" <?php echo ($tt3 == 0) ? "selected" : ""; ?>>0</option>
+            </select>
+            <br>
+            
+            <label for="tt4">TT4:</label>
+            <select name="tt4" id="tt4">
+                <option value="1" <?php echo ($tt4 == 1) ? "selected" : ""; ?>>1</option>
+                <option value="0" <?php echo ($tt4 == 0) ? "selected" : ""; ?>>0</option>
+            </select>
+            <br>
+            
+            <label for="tt5">TT5:</label>
+            <select name="tt5" id="tt5">
+                <option value="1" <?php echo ($tt5 == 1) ? "selected" : ""; ?>>1</option>
+                <option value="0" <?php echo ($tt5 == 0) ? "selected" : ""; ?>>0</option>
+            </select>
+            <br>
+            
+            <label for="rh">RH:</label>
+            <select name="rh" id="rh">
+                <option value="1" <?php echo ($rh == 1) ? "selected" : ""; ?>>1</option>
+                <option value="0" <?php echo ($rh == 0) ? "selected" : ""; ?>>0</option>
+            </select>
+            <br>
+            
+            <input type="submit" value="Save" name="vacinate">
+            <button onclick="hidePopup()" type="button">Cancel</button>
+        </form>
 
-                <input type="hidden" name="m_id" value="<?php echo $m_id; ?>">
-                <label for="tt1">TT1:</label>
-                <input type="number" value="<?php echo $tt1 ?>" name="tt1" id="tt1">
-                <br>
-                <label for="tt2">TT2:</label>
-                <input type="number" value="<?php echo $tt2 ?>" name="tt2" id="tt2">
-                <br>
-                <label for="tt3">TT3:</label>
-                <input type="number" value="<?php echo $tt3 ?>" name="tt3" id="tt3">
-                <br>
-                <label for="tt4">TT4:</label>
-                <input type="number" value="<?php echo $tt4 ?>" name="tt4" id="tt4">
-                <br>
-                <label for="tt5">TT5:</label>
-                <input type="number" value="<?php echo $tt5 ?>" name="tt5" id="tt5">
-                <br>
-                <label for="rh">RH:</label>
-                <input type="number" value="<?php echo $rh; ?>" name="rh" id="rh">
-                <br>
-                <input type="submit" value="save" name='vacinate'>
-                <button onclick="hidePopup()" type="button">Cancel</button>
-            </form>
         </div>
 
         <script>
@@ -285,7 +311,7 @@ include("./parts/header.php");
      $result1 = mysqli_query($conn,$query1)or die(mysqli_error());
      if($result1 == True){
          $_SESSION["add"]=$m_id." sucessfully added";
-          #header("Location:".HOMEURL."health/mother_detail.php");
+         # header("Location:".HOMEURL."health/mother_detail.php");
           echo $_SESSION['add'];
           unset($_SESSION['add']);
           

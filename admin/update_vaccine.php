@@ -38,7 +38,7 @@ $id = $_GET['id'];
                         } 
                         ?>
           <div class="modal-footer">
-            <button data-dismiss="modal">Close</button>
+            <a  href='./categories.php' class='btn' >Close</a>
             <input type="submit" class="btn btn-warning" name='updatevaccine' value="submit">
           </div>
         </div>

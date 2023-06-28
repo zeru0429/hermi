@@ -106,22 +106,6 @@ if(isset($_POST['updatepost'])){
           $catagory = $_POST['catagory'];
           $description = $_POST['editor1'];
           $date_of_post = date('y-m-d h:m:s');
-    if(!isset($_FILES['image']['name'])){
-        $image_name = "";
-    }
-    else{
-        $image_name = $_FILES['image']['name']; 
-        $image_source = $_FILES['image']['tmp_name'];
-        $image_destination = "../images/users/".$image_name;
-        $uplode = move_uploaded_file($image_source,$image_destination);
-        if($uplode==FALSE){
-            $_SESSION["add"]="faile to upload image";
-            header("Location:".HOMEURL."/admin/users.php");
-            die();
-        }
-     
-    }
-
     $query ="UPDATE `cbtp`.`post` SET
              tittle='$title',
              catagory='$catagory', 
@@ -132,7 +116,7 @@ if(isset($_POST['updatepost'])){
     $result = mysqli_query($conn,$query)or die(mysqli_error());
     if($result == True){
         $_SESSION["add"]=$title." sucessfully added";
-         
+       # header("Location:".HOMEURL."admin/post.php");
      }else{
          $_SESSION["add"]=$title." failed to added";
         
